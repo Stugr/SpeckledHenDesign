@@ -1,0 +1,18 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^([a-z.]+)?speckledhendesign\.com$ [NC]  
+RewriteCond %{HTTP_HOST} !^www\. [NC]  
+RewriteRule .? http://www.%1speckledhendesign.com%{REQUEST_URI} [R=301,L]
+
+RewriteRule ^(.*)-(.*)$ $1_$2 [L]
+RewriteRule ^.+(includes/.+)$ $1 [L]
+RewriteRule ^.+(images/.+)$ $1 [L]
+
+RewriteRule ^(about_me)/$ $1.php [L]
+RewriteRule ^(about_me)$ $1.php [L]
+
+RewriteRule ^(print|product_and_packaging_design|illustrations|personal|fashion)/(.*)/ $2.php
+RewriteRule ^(print|product_and_packaging_design|illustrations|personal|fashion)/(.*) $2.php
+
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule ^/?(.*)$ /folio/404.php?url=$1 [L]
